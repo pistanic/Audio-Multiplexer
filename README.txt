@@ -1,6 +1,6 @@
 To decrypt on Unix based system: 
 
-gpg SystemC_Project.tgz.gpg
+gpg sourcefiles.tar.gz.gpg
 
 This will promp you to enter the passphrase.
 
