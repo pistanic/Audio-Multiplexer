@@ -1,0 +1,41 @@
+#!/bin/bash
+
+RED='\033[0;31m'
+GRN='\033[0;32m'
+PRPL='\033[0;35m'
+NC='\033[0m'
+
+
+echo -e "${PRPL}"
+echo "*							*"
+echo "*			Multiplex test			*"
+echo "*							*"
+echo -e "${NC}"
+
+./multiplex mux.wav voice1.wav heart1.wav linkinpark1.wav
+echo -e "${GRN}Multiplex complete "
+echo -e "${NC} "
+
+./demultiplex mux.wav Voice1.wav Heart1.wav Linkinpark1.wav
+echo -e "${GRN}Demultiplex complete "
+echo -e "${PRPL} "
+
+echo "Voice Comparison"
+echo -e "${NC} "
+./array1cmp -f voice1.wav -F Voice1.wav -a -m mse
+
+echo -e "${NC} "
+echo -e "${PRPL} Heart Comparison"
+echo -e "${NC} "
+./array1cmp -f heart1.wav -F Heart1.wav -a -m mse 
+
+echo -e "${NC} "
+echo -e "${PRPL} Linkinpark Comparison"
+echo -e "${NC} "
+./array1cmp -f linkinpark1.wav -F Linkinpark1.wav -a -m mse
+echo -e "${NC} "
+
+echo -e "${NC} "
+
+rm Voice1.wav Heart1.wav Linkinpark1.wav mux.wav
+
